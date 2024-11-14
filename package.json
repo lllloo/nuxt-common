@@ -13,5 +13,8 @@
     "nuxt": "^3.14.159",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "volta": {
+    "node": "20.18.0"
   }
 }
