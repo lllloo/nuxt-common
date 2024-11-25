@@ -27,11 +27,11 @@ describe('getImageInfo', () => {
       },
     )
 
-    const result = await getImageInfo('a')
+    const result = await getImageInfo('url')
     expect(result).toEqual({ width: 200, height: 100 })
   })
 
-  it('應該返回 null，如果圖像 URL 無效', async () => {
+  it('應該載入失敗', async () => {
     vi.stubGlobal(
       'Image',
       class {
@@ -43,7 +43,7 @@ describe('getImageInfo', () => {
         set src(value) {
           this._src = value
           if (this.onerror) {
-            this.onerror()
+            this.onerror('error')
           }
         }
         get src() {
@@ -53,10 +53,58 @@ describe('getImageInfo', () => {
     )
 
     try {
-      await getImageInfo('a')
-    } catch {
-      expect(true).toBe(true)
+      await getImageInfo('url')
+    } catch (error) {
+      expect(error).toBeDefined()
     }
+  })
+})
+
+describe('getScaleSize', () => {
+  it('如果在最大尺寸範圍內，應返回原始尺寸', () => {
+    const size = getScaleSize({ width: 100, height: 100, maxWidth: 200, maxHeight: 200 })
+    expect(size).toEqual({ width: 100, height: 100 })
+  })
+
+  it('如果超過最大尺寸，應返回縮放尺寸', () => {
+    const size = getScaleSize({ width: 300, height: 300, maxWidth: 200, maxHeight: 200 })
+    expect(size).toEqual({ width: 200, height: 200 })
+  })
+
+  it('應該返回縮放尺寸，如果寬度和高度超過最大尺寸', () => {
+    const size = getScaleSize({ width: 600, height: 300, maxWidth: 100, maxHeight: 100 })
+    expect(size).toEqual({ width: 100, height: 50 })
+  })
+})
+
+describe('resizeImage', () => {
+  it('應該返回縮放後的圖片 URL', () => {
+    // happy-dom 不支持 HTMLCanvasElement，所以這裡使用 jest 的 mock
+    const canvas = document.createElement('canvas')
+    const createElementSpy = vi.spyOn(document, 'createElement').mockReturnValue(canvas)
+    const getContext = vi.spyOn(canvas, 'getContext').mockReturnValue({ drawImage: () => {} })
+    const toDataURL = vi.spyOn(canvas, 'toDataURL').mockReturnValue('data:image/jpeg;base64,')
+
+    const img = new Image()
+    img.width = 300
+    img.height = 300
+    const dataUrl = resizeImage(img, 200, 200)
+    expect(createElementSpy).toHaveBeenCalled()
+    expect(getContext).toHaveBeenCalled()
+    expect(toDataURL).toHaveBeenCalled()
+    expect(dataUrl).toMatch(/^data:image\/jpeg;base64,/)
+  })
+})
+
+describe('getImageUrl', () => {
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+  it('應該返回給定文件的 URL', () => {
+    vi.spyOn(URL, 'createObjectURL').mockReturnValue('http://localhost/test')
+    const file = new File([''], 'image.png', { type: 'image/png' })
+    const url = getImageUrl(file)
+    expect(url).toBe('http://localhost/test')
   })
 })
 

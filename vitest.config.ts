@@ -4,7 +4,7 @@ export default defineVitestConfig({
   test: {
     environment: 'nuxt',
     expect: {
-      requireAssertions: true
+      requireAssertions: true,
     },
   },
 })

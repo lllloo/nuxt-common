@@ -2,7 +2,7 @@
  * 生成一個隨機的 UUID。
  *
  * @returns 一個隨機生成的 UUID 字符串。
- * 
+ *
  * @example
  * getUUID() // "72e80705-d7c8-4051-9e1a-9308b73aaf22"
  */

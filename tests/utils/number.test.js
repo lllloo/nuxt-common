@@ -99,7 +99,6 @@ describe('padStart', () => {
   })
 })
 
-
 describe('getRandom', () => {
   it('應該生成指定範圍內的隨機數', () => {
     const min = 1

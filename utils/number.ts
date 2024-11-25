@@ -35,7 +35,7 @@ export const padStart = (value: number | string, length: number = 0, padString: 
  * @param min - 隨機整數的最小值。
  * @param max - 隨機整數的最大值。
  * @returns 在範圍內的隨機整數。
- * 
+ *
  * @example
  * getRandom(1, 10) // 生成一個介於 1 和 10 之間的隨機整數
  */

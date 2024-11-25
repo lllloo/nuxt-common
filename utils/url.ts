@@ -38,3 +38,42 @@ export function objectToQueryString(
     ...options,
   })
 }
+
+/**
+ * 從 URL 中取得搜尋參數的物件。
+ * @param {string} url - 要解析的 URL 字串。
+ * @returns {Object} 包含搜尋參數的物件。
+ * @example getParams(window.location.search)
+ */
+export const simpleGetQueryParams = (url: string) => {
+  const params = new URLSearchParams(url)
+
+  return Array.from(params.entries()).reduce<Record<string, string | string[]>>(
+    (result, [key, value]) => {
+      if (key in result) {
+        result[key] = Array.isArray(result[key])
+          ? [...(result[key] as string[]), value]
+          : [result[key] as string, value]
+      } else {
+        result[key] = value
+      }
+      return result
+    },
+    {},
+  )
+}
+
+/**
+ * 將物件轉換為 URL 查詢字串。
+ * @param {{ [key: string]: string|number }} obj - 包含查詢參數的物件。
+ * @returns {string} - URL 查詢字串。
+ */
+export const simpleObjectToQueryString = (obj: Record<string, string | number>) => {
+  return Object.entries(obj)
+    .flatMap(([key, value]) =>
+      Array.isArray(value)
+        ? value.map((v) => `${encodeURIComponent(key)}=${encodeURIComponent(v)}`)
+        : `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
+    )
+    .join('&')
+}
