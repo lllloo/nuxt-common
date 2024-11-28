@@ -16,9 +16,11 @@
   },
   "dependencies": {
     "@nuxt/eslint": "^0.6.1",
+    "@nuxtjs/tailwindcss": "^6.12.2",
     "big.js": "^6.2.2",
     "nuxt": "^3.14.159",
     "qs": "^6.13.1",
+    "swiper": "^11.1.15",
     "vue": "latest",
     "vue-router": "latest"
   },

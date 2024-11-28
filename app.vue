@@ -1,8 +1,6 @@
-<script setup lang="ts">
-const x = numberFormat(1234567.89)
-</script>
+<script setup lang="ts"></script>
 <template>
-  <div>
-    <p>{{ x }}</p>
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
