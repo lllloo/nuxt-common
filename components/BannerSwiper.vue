@@ -1,49 +1,59 @@
 <script lang="ts" setup>
-import { EffectFade } from 'swiper/modules'
+import { EffectFade, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
-const onSlideChange = () => {
-  console.log('slide change')
-}
-const onSwiper = () => {
-  console.log('swiper')
-}
+import 'swiper/css/pagination'
 
-const list = [
-  {
-    title: 'BANNER 1',
-    image: 'https://picsum.photos/1920/1080?random=1',
-  },
-  {
-    title: 'BANNER 2',
-    image: 'https://picsum.photos/1920/1080?random=2',
-  },
-  {
-    title: 'BANNER 3',
-    image: 'https://picsum.photos/1920/1080?random=3',
-  },
-]
+defineProps<{
+  list?: { image: string; title: string }[]
+}>()
+
+const isSwiperLoaded = ref(false)
+const onInit = () => {
+  isSwiperLoaded.value = true
+}
 </script>
-
 <template>
-  <Swiper
-    class="h-full"
-    effect="fade"
-    :slides-per-view="1"
-    :space-between="0"
-    :modules="[EffectFade]"
-    @swiper="onSwiper"
-    @slide-change="onSlideChange"
-  >
-    <SwiperSlide v-for="(item, index) in list" :key="index">
-      <div :class="`w-full h-full flex justify-center items-center bg-[url('${item.image}')]`">
-        <h2 class="px-[20px] text-[40px] sm:(px-[36px] text-[72px]) font-bold bg-white">
-          {{ item.title }}
-        </h2>
-      </div>
-    </SwiperSlide>
-  </Swiper>
+  <div class="swiper-wrap w-full h-full">
+    <Swiper
+      class="h-full"
+      effect="fade"
+      :slides-per-view="1"
+      :space-between="0"
+      :pagination="{ el: '.swiper-pagination', clickable: true }"
+      :modules="[EffectFade, Pagination]"
+      loop
+      @init="onInit"
+    >
+      <SwiperSlide v-for="(item, index) in list" :key="index" v-slot="{ isActive }">
+        <div class="relative w-full h-full flex justify-center items-center">
+          <h2
+            :class="[
+              'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1] px-5 text-white text-5xl/tight font-bold bg-white/9 backdrop-blur',
+              'sm:px-9 sm:text-7xl/tight',
+            ]"
+          >
+            {{ item.title }}
+          </h2>
+          <img
+            :class="[
+              'w-full h-full object-cover object-center scale-110 transition-all duration-500 delay-100',
+              isActive && '!scale-100',
+            ]"
+            :src="item.image"
+            alt=""
+          />
+        </div>
+      </SwiperSlide>
+    </Swiper>
+    <div class="swiper-pagination" />
+  </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.swiper-wrap {
+  --swiper-pagination-bottom: 0;
+  --swiper-pagination-color: rgba(0, 0, 0, 0.7);
+}
+</style>
