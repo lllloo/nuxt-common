@@ -1,27 +1,15 @@
-<script lang="ts" setup>
-import { BannerSwiper } from '#components'
-
-const list = ref([
-  {
-    title: 'BANNER 1',
-    image: 'https://picsum.photos/1920/1080?random=1',
-  },
-  {
-    title: 'BANNER 2',
-    image: 'https://picsum.photos/1920/1080?random=2',
-  },
-  {
-    title: 'BANNER 3',
-    image: 'https://picsum.photos/1920/1080?random=3',
-  },
-])
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div>
     <section class="h-dvh flex-1">
-      <BannerSwiper :list="list" />
+      <img
+        class="w-full h-full object-cover object-center"
+        src="https://picsum.photos/1920/1080"
+        alt=""
+      />
     </section>
+    <AppLine />
   </div>
 </template>
 
