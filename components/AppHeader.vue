@@ -20,8 +20,8 @@ const list = ref([
     url: '/products',
   },
   {
-    name: 'Customers',
-    url: '/customers',
+    name: 'Cards',
+    url: '/cards',
   },
   {
     name: 'Analytics',

@@ -26,4 +26,5 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
   },
+  components: [{ path: '~/components/card', pathPrefix: false }, '~/components'],
 })
