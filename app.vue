@@ -4,4 +4,9 @@
     <NuxtPage />
   </NuxtLayout>
 </template>
-<style lang="scss"></style>
+<style lang="scss">
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.75s;
+}
+</style>

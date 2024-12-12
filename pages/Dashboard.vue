@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <section class="h-[calc(100dvh-130px)] grid grid-cols-2 gap-2">
+    <section class="h-[calc(100dvh-130px)] grid grid-cols-2 gap-8">
       <div class="bg-gray-400"></div>
       <div class="bg-gray-300"></div>
       <div class="bg-gray-500"></div>
