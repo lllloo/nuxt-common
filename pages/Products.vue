@@ -14,7 +14,7 @@ const randomColorList = [
 
 <template>
   <div class="relative">
-    <section class="grid grid-cols-4 gap-8 p-4">
+    <section class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 p-4">
       <div
         v-for="n in 20"
         :key="n"
