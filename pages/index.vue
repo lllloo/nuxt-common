@@ -8,10 +8,12 @@
           alt=""
         />
       </section>
-      <AppLine :count="1" />
+      <div>
+        <AppLine />
+      </div>
     </div>
     <div class="relative p-8">
-      <div class="grid grid-cols-2 gap-8">
+      <div class="grid grid-cols-2 gap-16">
         <section class="h-dvh flex-1">
           <img
             class="w-full h-full object-cover object-center"
@@ -27,7 +29,10 @@
           />
         </section>
       </div>
-      <AppLine :count="2" />
+      <div class="grid grid-cols-2">
+        <AppLine />
+        <AppLine />
+      </div>
     </div>
   </div>
 </template>

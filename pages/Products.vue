@@ -26,7 +26,12 @@ const randomColorList = [
         }"
       ></div>
     </section>
-    <AppLine :count="4" />
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+      <AppLine />
+      <AppLine />
+      <AppLine />
+      <AppLine />
+    </div>
   </div>
 </template>
 

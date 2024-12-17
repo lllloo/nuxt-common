@@ -22,7 +22,12 @@ const list = ref([
     <section class="h-dvh flex-1">
       <BannerSwiper :list="list" />
     </section>
-    <AppLine />
+    <div class="grid grid-cols-4">
+      <AppLine />
+      <AppLine />
+      <AppLine />
+      <AppLine />
+    </div>
   </div>
 </template>
 

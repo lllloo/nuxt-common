@@ -24,8 +24,8 @@ const list = ref([
     url: '/cards',
   },
   {
-    name: 'Analytics',
-    url: '/analytics',
+    name: 'Word',
+    url: '/word',
   },
 ])
 </script>
