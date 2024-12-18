@@ -28,7 +28,9 @@
           }"
         />
       </div>
-      <div class="p-4"></div>
+      <div>
+        <LoginCard />
+      </div>
       <div class="p-4"></div>
     </section>
   </div>

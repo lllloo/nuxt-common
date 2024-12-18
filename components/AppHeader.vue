@@ -27,6 +27,10 @@ const list = ref([
     name: 'Word',
     url: '/word',
   },
+  {
+    name: 'Login',
+    url: '/login',
+  },
 ])
 </script>
 <template>
