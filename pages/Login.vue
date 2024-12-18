@@ -1,8 +1,8 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div>
-    <div class="max-w-[520px] m-10">
+  <div class="bg-[#f9f9f9] overflow-hidden">
+    <div class="max-w-[520px] m-10 ml-auto">
       <LoginCard />
     </div>
   </div>

@@ -20,17 +20,12 @@
         </div>
       </div>
 
-      <div>
-        <hr class="my-12" />
+      <div class="!mt-12">
+        <Button type="submit" size="lg" class="w-full"> 登入 </Button>
       </div>
 
       <div>
-        <button
-          type="submit"
-          class="flex text-lg/7 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          登入
-        </button>
+        <Button variant="outline" size="lg" class="w-full"> 取消 </Button>
       </div>
     </form>
   </div>
