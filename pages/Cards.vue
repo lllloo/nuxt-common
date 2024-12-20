@@ -31,7 +31,9 @@
       <div>
         <LoginCard />
       </div>
-      <div class="p-4"></div>
+      <div>
+        <AnimationCard />
+      </div>
     </section>
   </div>
 </template>
